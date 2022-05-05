@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="autor" content="Salvador Aguilar Asquit">
+    <meta name="title" content="Proyecto TFC">
+    <meta name="description" content="Vamos hacer una web que contenga el Proyecto TFC">
+
+    <!-- Import Boostrap -->
+    <link href="./lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="./lib/bootstrap/bootstrap-icons.css" rel="stylesheet">
+
+
+
+    <!-- Import JQuery -->
+    <script src="./lib/jquery/jquery-3.5.1.min.js"></script>
+
+    <title>Viajes Soter</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Inicio Cabecera -->
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+
+            <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                Logo
+            </div>
+
+            <div class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                Viajes Soter
+            </div>
+
+            <div class="col-md-3 text-end">
+                <button type="button" id="login" class="btn btn-outline-primary me-2 access">Login</button>
+                <button type="button" id="Sign" class="btn btn-primary access">Sign-up</button>
+                <button type="button" id="usuario-logeado" class="btn btn-outline-primary me-2"></button>
+                <button type="button" id="logout" class="btn btn-primary access">Logout</button>
+
+            </div>
+        </header>
+        <!-- navegador -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Viajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">hoteles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Viaje + Hotel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ofertas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reseñas</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- modal login -->
+        <div id="modal-login" idclass="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-5 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 class="fw-bold mb-0">login</h2>
+                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-5 pt-0">
+                        <form id="login-form" class="">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control rounded-4" id="email_login" name="email_login" placeholder="name@example.com" required>
+                                <label for="email_login">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control rounded-4" id="pass_login" name="pass_login" placeholder="Password" minlength="8" required>
+                                <label for="pass_login">Password</label>
+                            </div>
+                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Login</button>
+                            <button id="recovery" class="w-100 mb-2 btn btn-lg rounded-4 btn-outline-primary" type="button">Forgot password ?</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal sign-up -->
+        <div id="modal-Sign" idclass="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-5 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 class="fw-bold mb-0">Sign up for free</h2>
+                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-5 pt-0">
+                        <form id="form-Sign" class="">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="dni_register" class="form-control rounded-4" id="dni_register" placeholder="00000000A" pattern="[0-9]{8}[A-Za-z]{1}" required>
+                                <label for="dni_register">Dni</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="nombre_register" class="form-control rounded-4" id="nombre_register" placeholder="name" maxlength="20" required>
+                                <label for="nombre_register">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="apellidos_register" class="form-control rounded-4" id="apellidos_register" placeholder="subname subname2" maxlength="20" required>
+                                <label for="apellidos_register">Apellidos</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select name="pais_register" class="form-control rounded-4" id="pais_register" required>
+                                    <option value=""></option>
+                                    <option value="spain">spain</option>
+                                    <option value="eng">eng</option>
+                                    <option value="usa">usa</option>
+                                </select>
+                                <label for="pais_register">pais</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="telefono_register" class="form-control rounded-4" id="telefono_register" placeholder="000000000" pattern="[0-9]{9}" required>
+                                <label for="telefono_register">Telefono</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email_register" class="form-control rounded-4" id="email_register" placeholder="name@example.com" required>
+                                <label for="email_register">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="usu_register" class="form-control rounded-4" id="usu_register" placeholder="usu" maxlength="20"required>
+                                <label for="usu_register">Usuario</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="pass_register" class="form-control rounded-4" id="pass_register" placeholder="Password" minlength="8" maxlength="20" required>
+                                <label for="pass_register">Password</label>
+                            </div>
+                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign up</button>
+                            <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal recuperar contraseña -->
+        <div id="modal-recovery" idclass="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-5 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 class="fw-bold mb-0">Recovery</h2>
+                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-0">
+                        <form id="recovery-form" class="">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control rounded-4" id="email_recovery" name="email_recovery" placeholder="name@example.com" required>
+                                <label for="email_recovery">Email Recovery</label>
+                            </div>
+                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Recovery</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal recuperar contraseña - confirmacion -->
+        <div id="modal-recovery-change" idclass="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-5 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 class="fw-bold mb-0">Recovery</h2>
+                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-0">
+                        <form id="recovery-change-form" class="">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control rounded-4" id="codigo_recovery" name="codigo_recovery" placeholder="Recovery" required>
+                                <label for="codigo_recovery"> Email code</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control rounded-4" id="pass_new" name="pass_new" placeholder="Password" minlength="8" required>
+                                <label for="pass_new"> New Password</label>
+                            </div>
+                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Change Password</button>
+                            <div>
+                                <label>Los correso podrian llegar a la carpeta de SPAM</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin de la cabecera -->
+    </div>
+
+    <!-- Import JS -->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+Version 0.01
+- se ha creado el login
+- se ha creado el formulario de registro
+- se ha creado el formulario de contraseña olvidada
+- se a creado la funcion de enviar email con el codigo de recuperacion
