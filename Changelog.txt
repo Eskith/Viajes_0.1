@@ -3,3 +3,14 @@ Version 0.01
 - se ha creado el formulario de registro
 - se ha creado el formulario de contraseña olvidada
 - se a creado la funcion de enviar email con el codigo de recuperacion
+
+Version 0.02
+- se ha creado la vista reseñas
+- se ha creado el modal reseñas
+- se ha creado el controlador reseñas
+- se ha creado el js de reseñas
+- se corrijen errores en los modales
+- se ha creado el apartedo de configuracion
+- se ha creado el controller de configuracios
+- se ha creado el modelo de configuracion
+- se actualiza y mejoran las tablas de reseñas haciendolas responsive

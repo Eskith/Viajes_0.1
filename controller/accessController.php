@@ -4,7 +4,6 @@ require_once "../model/accessModel.php";
 
 $access = new Access("localhost", "root", "", "Viajes_0.2");
 
-
 switch ($_POST["service"]) {
     case 'login':
         $pass = md5($_POST["pass_login"]);
@@ -17,15 +16,10 @@ switch ($_POST["service"]) {
 
     case 'register':
 
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
-        // exit;
-
         $email = strtolower($_POST["email_register"]);
         $usu = strtolower($_POST["usu_register"]);
         $pass = md5($_POST["pass_register"]);
-        $dni = $_POST["dni_register"];
+        $dni = strtolower($_POST["dni_register"]);
         $name = strtolower($_POST["nombre_register"]);
         $subname = strtolower($_POST["apellidos_register"]);
         $location = $_POST["pais_register"];
@@ -50,19 +44,65 @@ switch ($_POST["service"]) {
         $codeUsuario = $_POST["codigo_recovery"];
         $newPass = md5($_POST["pass_new"]);
 
-        if ($codeUsuario == $_SESSION["code"]) { 
-            
+        if ($codeUsuario == $_SESSION["code"]) {
+
             $response = $access->changePass($newPass);
             echo json_encode($response);
-        }else{
+        } else {
             $response = "codigo Erroneo";
             echo json_encode($response);
         }
 
         break;
-    default:
-        # code...
+
+    case 'usuarioLogeado':
+        if (!isset($_SESSION["usuario"]["usuario"])) {
+            $response = [
+                "status" => "usuario no logeado",
+                "usuario" => "usuario no logeado",
+                "tipo" => "usuario no logeado"
+            ];
+        }else{
+            $response = [
+                "status" => "logeado",
+                "usuario" => $_SESSION["usuario"]["usuario"],
+                "tipo" => $_SESSION["usuario"]["administrador"]
+            ];
+        }
+        echo json_encode($response);
+
         break;
+        case 'mostrar_Datos':          
+            if (!isset($_SESSION["usuario"]["usuario"])) {
+                $response = [
+                    "status" => "usuario no logeado",
+                    "usuario" => "usuario no logeado",
+                ];
+            }else{
+                $response = [
+                    "status" => "logeado",
+                    "dni" => $_SESSION["usuario"]["dni"],
+                    "nombre" => $_SESSION["usuario"]["nombre"],
+                    "apellidos" => $_SESSION["usuario"]["apellidos"],
+                    "pais" => $_SESSION["usuario"]["pais"],
+                    "telefono" => $_SESSION["usuario"]["telefono"],
+                    "email" => $_SESSION["usuario"]["email"],
+                    "usuario" => $_SESSION["usuario"]["usuario"],
+                    "password" => "********"
+                ];
+            }
+            echo json_encode($response);
+            break;
+    case 'logout':
+
+        session_destroy();
+        $response = [
+            "status" => "success",
+            "msg" => "Logout"
+        ];
+        echo json_encode($response);
+        break;
+
 }
 
 

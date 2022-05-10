@@ -53,21 +53,43 @@ class Access
                         $response = array(
                             "usuario" => $datos[0]["usuario"],
                             "status" => "Login",
-                            "login" => "usuario"
+                            "login" => "usuario",
+                            "tipo" => "0"
                         );
                         return $response;
                         break;
 
                     case '1':
-                        return "Login admin";
+                        $_SESSION["usuario"] = $datos[0];
+                        $response = array(
+                            "usuario" => $datos[0]["usuario"],
+                            "status" => "Login",
+                            "login" => "administrador",
+                            "tipo" => "1"
+                        );
+                        return $response;
                         break;
 
                     case '2':
-                        return "Login Aerolinea";
+                        $_SESSION["usuario"] = $datos[0];
+                        $response = array(
+                            "usuario" => $datos[0]["usuario"],
+                            "status" => "Login",
+                            "login" => "Aerolinia",
+                            "tipo" => "2"
+                        );
+                        return $response;
                         break;
 
                     case '3':
-                        return "Login Hotelera";
+                        $_SESSION["usuario"] = $datos[0];
+                        $response = array(
+                            "usuario" => $datos[0]["usuario"],
+                            "status" => "Login",
+                            "login" => "Hostelera",
+                            "tipo" => "3"
+                        );
+                        return $response;
                         break;
 
                     default:
@@ -113,13 +135,16 @@ class Access
         }
     }
 
-
     function recovery($email)
     {
         $datos = self::filtraUsuario($email);
 
         if ($datos == "usuario no en contrado") {
-            return "Email o pass incorrecta";
+            $response = [
+                "status" => "Fail",
+                "msg" => "Email incorrecto"
+            ];
+            return $response;
         } else {
             $_SESSION["code"] = random_int(100, 999);
             $_SESSION["email_Recovery"] = $email;
@@ -140,9 +165,17 @@ class Access
         $result = $this->mysqli->query($sql);
 
         if ($result) {
-            return "success";
+            $response = array(
+                "status" => "success",
+                "msg" => "Modificado con exito"
+            );
+            return $response;
         } else {
-            return $result;
+            $response = array(
+                "status" => "Fail",
+                "msg" => "Fallo en la base de datos"
+            );
+            return $response;
         }
     }
 
@@ -169,7 +202,6 @@ class Access
         $mail->AddAddress($email, 'Gianni');
         $mail->send();
     }
-
 
     function buscarConcidencias($email, $dni, $usu)
     {
@@ -241,14 +273,13 @@ class Access
         }
     }
 
-
     function filtraUsuario($email)
-    {
+    {     
         $sql = "SELECT
         * 
-    FROM
+        FROM
         usuario 
-    WHERE
+        WHERE
         email = '{$email}'";
 
         $result = $this->mysqli->query($sql);
@@ -263,15 +294,6 @@ class Access
             return $datos;
         }
     }
-
-
-
-
-
-
-
-
-
 
 
     //-------------------------------------------------------------------------------------
