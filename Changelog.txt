@@ -1,4 +1,4 @@
-Version 0.01
+ Version 0.01
 - se ha creado el login
 - se ha creado el formulario de registro
 - se ha creado el formulario de contraseña olvidada
@@ -14,3 +14,16 @@ Version 0.02
 - se ha creado el controller de configuracios
 - se ha creado el modelo de configuracion
 - se actualiza y mejoran las tablas de reseñas haciendolas responsive
+
+Version 0.03
+- se ha solucionado erorres con el UTF-8 al mostrarlos en lñas tablas
+- se ha solucionado problemas con los modales que no se cerraban adecuadamente
+- se ha creado el adminController
+- se ha creado el adminModal
+- se ha creado la vista del Admin en el Index 
+
+Version 0.04
+- se ha creado la vista de vuelos
+- se ha creado el controller de vuelos
+- se ha creado el model de vuelos
+- se han solucionado varios bugs y fallos

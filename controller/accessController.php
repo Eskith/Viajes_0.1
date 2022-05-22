@@ -2,7 +2,7 @@
 require_once "../model/accessModel.php";
 
 
-$access = new Access("localhost", "root", "", "Viajes_0.2");
+$access = new Access();
 
 switch ($_POST["service"]) {
     case 'login':
@@ -62,23 +62,57 @@ switch ($_POST["service"]) {
                 "usuario" => "usuario no logeado",
                 "tipo" => "usuario no logeado"
             ];
-        }else{
-            $response = [
-                "status" => "logeado",
-                "usuario" => $_SESSION["usuario"]["usuario"],
-                "tipo" => $_SESSION["usuario"]["administrador"]
-            ];
+        } else {
+            if (!isset($_SESSION["usuario"]["administrador"])) {
+                switch ($_SESSION["usuario"]["rol"]) {
+                    case 'aerolinea':
+                        $response = [
+                            "status" => "logeado",
+                            "usuario" => $_SESSION["usuario"]["usuario"],
+                            "tipo" => $_SESSION["usuario"]["rol"]
+                        ];
+                        break;
+
+                    case 'hotelera':
+                        $response = [
+                            "status" => "logeado",
+                            "usuario" => $_SESSION["usuario"]["usuario"],
+                            "tipo" => $_SESSION["usuario"]["rol"]
+                        ];
+                        break;
+                }
+            } else {
+                $response = [
+                    "status" => "logeado",
+                    "usuario" => $_SESSION["usuario"]["usuario"],
+                    "tipo" => $_SESSION["usuario"]["administrador"]
+                ];
+            }
         }
         echo json_encode($response);
 
         break;
-        case 'mostrar_Datos':          
-            if (!isset($_SESSION["usuario"]["usuario"])) {
-                $response = [
-                    "status" => "usuario no logeado",
-                    "usuario" => "usuario no logeado",
-                ];
-            }else{
+    case 'mostrar_Datos':
+        if (!isset($_SESSION["usuario"]["usuario"])) {
+            $response = [
+                "status" => "usuario no logeado",
+                "usuario" => "usuario no logeado",
+            ];
+        } else {
+            if (!isset($_SESSION["usuario"]["administrador"])) {
+                if (isset($_SESSION["usuario"]["rol"])) {
+                    $response = [
+                        "status" => "logeado",
+                        "nombre" => $_SESSION["usuario"]["nombre"],
+                        "telefono" => $_SESSION["usuario"]["telefono"],
+                        "email" => $_SESSION["usuario"]["email"],
+                        "usuario" => $_SESSION["usuario"]["usuario"],
+                        "password" => "********",
+                        "tipo" => "otros"
+                    ];
+                }
+
+            }else {
                 $response = [
                     "status" => "logeado",
                     "dni" => $_SESSION["usuario"]["dni"],
@@ -88,13 +122,14 @@ switch ($_POST["service"]) {
                     "telefono" => $_SESSION["usuario"]["telefono"],
                     "email" => $_SESSION["usuario"]["email"],
                     "usuario" => $_SESSION["usuario"]["usuario"],
-                    "password" => "********"
+                    "password" => "********",
+                    "tipo" => "usuario"
                 ];
             }
-            echo json_encode($response);
-            break;
+        }
+        echo json_encode($response);
+        break;
     case 'logout':
-
         session_destroy();
         $response = [
             "status" => "success",
@@ -102,7 +137,6 @@ switch ($_POST["service"]) {
         ];
         echo json_encode($response);
         break;
-
 }
 
 

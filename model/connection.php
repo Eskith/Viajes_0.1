@@ -19,12 +19,13 @@ class Connection
      * @param password $String es la contraseña del usuario
      * @param bd  $String es el nombre d ela base de datos
      */
-    function __construct($ip, $usuario, $password, $bd)
+    // function __construct($ip, $usuario, $password, $bd)
+    function __construct()
     {
-        $this->ip = $ip;
-        $this->usuario = $usuario;
-        $this->password = $password;
-        $this->bd = $bd;
+        $this->ip = "localhost";
+        $this->usuario = "root";
+        $this->password = "";
+        $this->bd = "Viajes_0.2";
     }
 
 

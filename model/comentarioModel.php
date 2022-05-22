@@ -1,5 +1,6 @@
 <?php
 require_once "connection.php";
+require_once "utilidades.php";
 
 
 session_start();
@@ -19,12 +20,14 @@ class Coment
      * @param String $pass es la contraseña para acceder a la base de datos
      * @param String $bd la base de datos para conectar
      */
-    public function __construct($ip, $usu, $pass, $bd)
+    // public function __construct($ip, $usu, $pass, $bd)
+    public function __construct()
+
     {
 
 
         //coneccion para la base de datos
-        $coneccion = new Connection($ip, $usu, $pass, $bd);
+        $coneccion = new Connection();
         $this->mysqli = $coneccion->coneccion_Mysqli();
     }
 
@@ -36,7 +39,10 @@ class Coment
      */
     function comnetar($usuario, $puntuacion, $destino, $comnetario)
     {
-        $sql = "INSERT INTO `comentarios` VALUES ('','{$usuario}', '{$comnetario}', {$puntuacion}, '{$destino}');";
+        $fecha = new DateTime();
+        $fecha = $fecha->format('Y-m-d\ H:i:s');
+
+        $sql = "INSERT INTO `comentarios` VALUES ('','{$usuario}', '{$comnetario}', {$puntuacion}, '{$destino}', '{$fecha}');";
 
         $result = $this->mysqli->query($sql);
 
@@ -61,7 +67,7 @@ class Coment
     {
 
         $sql = "SELECT 
-        numero_de_comentario as Referencia, usuario as Usuario, experiencia as Comentario, puntuacion as Puntuacion, destino as Destino 
+        numero_de_comentario as Referencia, usuario as Usuario, experiencia as Comentario, puntuacion as Puntuacion, destino as Destino , fecha as Fecha
         FROM `comentarios`";
 
         $result = $this->mysqli->query($sql);
@@ -73,31 +79,14 @@ class Coment
         if ($admin == "admin") {
             foreach ($datos as $key => $value) {
 
-                $editar = array("EDITAR" => "<button type='button' onclick='editarComentario(this.id)' class='btn btn-sm btn-link edicion' id={$value['Referencia']} data-bs-toggle='modal' data-bs-target='#modal_Editar'><img src='../lib/feather/edit.svg'></button>");
+                $editar = array("EDITAR" => "<button type='button' onclick='editarComentario(this.id)' class='btn btn-sm btn-link edicion' id='{$value['Referencia']}' data-bs-toggle='modal' data-bs-target='#modal_Editar'><img src='../lib/feather/edit.svg'></button>");
                 $eliminar = array("ELIMINAR" => "<button type='button' onclick='eliminarRegistro(this.id)' class='btn btn-sm btn-link edicion' id='{$value['Referencia']}'><img src='../lib/feather/trash-2.svg'></button>");
     
                 $datos[$key] = array_merge($editar, $eliminar, $value);
             }
         }
 
-        $columns = array_keys($datos[0]);
-
-        $i = 0;
-
-        foreach ($columns as $key => $value) {
-
-            $columns[$key] = array('data' => $value);
-            $columnsDefs[] = array('title' => $value, 'targets' => $i, 'visible' => true, 'searchable' => true);
-            $i++;
-        }
-
-        $datos = array(
-            'data' => $datos,
-            'columns' => $columns,
-            'columnsDefs' => $columnsDefs,
-        );
-
-        return $datos;
+        return $response = procesar_Datatable($datos);
     }
     function editarComentario($id, $puntuacion, $comentario, $destino)
     {
@@ -129,9 +118,17 @@ class Coment
         $result = $this->mysqli->query($sql);
 
         if ($result) {
-            return "success";
+            $response = array(
+                "status" => "success",
+                "msg" => "Eliminado con exito"
+            );
+            return $response;
         } else {
-            return $result;
+            $response = array(
+                "status" => "Fail",
+                "msg" => "Fallo en la base de datos"
+            );
+            return $response;
         }
     }
 }

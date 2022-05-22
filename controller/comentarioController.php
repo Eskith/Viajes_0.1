@@ -1,7 +1,7 @@
 <?php
 require_once "../model/comentarioModel.php";
 
-$coment = new Coment("localhost", "root", "", "Viajes_0.2");
+$coment = new Coment();
 
 switch ($_POST["service"]) {
     case 'comentar':
@@ -16,14 +16,18 @@ switch ($_POST["service"]) {
         echo json_encode($response);
 
         break;
-    case 'tablaReseñas':
+    case 'tablaComentarios':
 
         $response = $coment->mostrarTablaComentarios($_POST["tipo"]);
-        echo json_encode($response);
+        try {
+            echo json_encode($response, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $exception) {
+            echo $exception->getMessage();
+        }
 
         break;
     case 'edit':
-       
+
         $id = $_POST["referencia_Edit"];
         $puntuacion = $_POST["puntuacion_Edit"];
         $comentario = $_POST["comentario_Edit"];
@@ -34,11 +38,19 @@ switch ($_POST["service"]) {
 
         break;
 
-        case 'delete':
+    case 'delete':
 
-            $id = $_POST["id"];
-            $response = $coment->eliminarComentario($id);
-            echo json_encode($response);
-            
-            break;
+        $id = $_POST["id"];
+        $response = $coment->eliminarComentario($id);
+        echo json_encode($response);
+
+        break;
+    case 'logout':
+        session_destroy();
+        $response = [
+            "status" => "success",
+            "msg" => "Logout"
+        ];
+        echo json_encode($response);
+        break;
 }

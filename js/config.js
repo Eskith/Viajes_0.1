@@ -35,7 +35,7 @@ $(document).ready(function() {
         e.preventDefault();
         url = "../controller/accessController.php";
 
-        data = {
+        let data = {
             "service": "logout"
         };
 
@@ -57,11 +57,23 @@ $(document).ready(function() {
             }
         });
     });
+    $("#button_success_modal").click(function(e) {
+        e.preventDefault();
+        $(".modal-backdrop").remove();
+    });
+    $("#button_fail_modal").click(function(e) {
+        e.preventDefault();
+        $(".modal-backdrop").remove();
+    });
+    $(".modal-close").click(function(e) {
+        e.preventDefault();
+        $(".modal-backdrop").remove();
+    });
 });
 
 function mostrar_Datos() {
     // comprueba se esta conectado
-    data = {
+    let data = {
         "service": "mostrar_Datos"
     };
 
@@ -73,21 +85,35 @@ function mostrar_Datos() {
         dataType: "JSON",
         success: function(response) {
             if (response.status == "logeado") {
-                $("#usuario_logeado").css("display", "");
-                $("#usuario_logeado").html(response.usuario);
-                $("#login").css("display", "none");
-                $("#Sign").css("display", "none");
-                $("#logout").css("display", "");
-                $("#dni_Usuario").val(response.dni);
-                $("#nombre_Usuario").val(response.nombre);
-                $("#apellidos_Usuario").val(response.apellidos);
-                $("#pais_Usuario").val(response.pais);
-                $("#telefono_Usuario").val(response.telefono);
-                $("#email_Usuario").val(response.email);
-                $("#usuario_Usuario").val(response.usuario);
-                $("#password_Usuario").val(response.password);
-
-
+                if (response.tipo == "usuario") {
+                    $("#usuario_logeado").css("display", "");
+                    $("#usuario_logeado").html(response.usuario);
+                    $("#login").css("display", "none");
+                    $("#Sign").css("display", "none");
+                    $("#logout").css("display", "");
+                    $("#dni_Usuario").val(response.dni);
+                    $("#nombre_Usuario").val(response.nombre);
+                    $("#apellidos_Usuario").val(response.apellidos);
+                    $("#pais_Usuario").val(response.pais);
+                    $("#telefono_Usuario").val(response.telefono);
+                    $("#email_Usuario").val(response.email);
+                    $("#usuario_Usuario").val(response.usuario);
+                    $("#password_Usuario").val(response.password);
+                } else {
+                    $("#usuario_logeado").css("display", "");
+                    $("#usuario_logeado").html(response.usuario);
+                    $("#login").css("display", "none");
+                    $("#Sign").css("display", "none");
+                    $("#logout").css("display", "");
+                    $("#nombre_Usuario").val(response.nombre);
+                    $("#telefono_Usuario").val(response.telefono);
+                    $("#email_Usuario").val(response.email);
+                    $("#usuario_Usuario").val(response.usuario);
+                    $("#password_Usuario").val(response.password);
+                    $("#dni_Usuario").css("display", "none");
+                    $("#apellidos_display").css("display", "none");
+                    $("#pais_display").css("display", "none");
+                }
             } else {
                 location.href = "../index.html";
             }

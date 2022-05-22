@@ -17,12 +17,12 @@ class Config
      * @param String $pass es la contraseña para acceder a la base de datos
      * @param String $bd la base de datos para conectar
      */
-    public function __construct($ip, $usu, $pass, $bd)
+    public function __construct()
     {
 
 
         //coneccion para la base de datos
-        $coneccion = new Connection($ip, $usu, $pass, $bd);
+        $coneccion = new Connection();
         $this->mysqli = $coneccion->coneccion_Mysqli();
     }
 
@@ -35,49 +35,137 @@ class Config
      * @param String $usuario es el usuario con el que se logea
      * @param String $password es la contraseña que cambiara
      */
-    function edit_Parametros($nombre, $apellidos, $pais, $telefono, $email, $usuario, $password)
+    function edit_Parametros($nombre, $apellidos, $pais, $telefono, $email, $usuario, $password, $tipo) 
     {
 
+        switch ($tipo) {
+            case 'usuario':
+                if ($password == "") {
+                    $sql = "UPDATE usuario 
+                    SET nombre = '{$nombre}', apellidos = '{$apellidos}', pais = '{$pais}', telefono = {$telefono}, email = '{$email}'
+                    WHERE
+                    usuario = '{$usuario}'";
+        
+                    $result = $this->mysqli->query($sql);
+                } else {
+                    $pass = md5($password);
+        
+                    $sql = "UPDATE usuario 
+                    SET nombre = '{$nombre}', apellidos = '{$apellidos}', pais = '{$pais}', telefono = {$telefono}, email = '{$email}', password = '{$pass}'
+                    WHERE
+                    usuario = '{$usuario}'";
+        
+                    $result = $this->mysqli->query($sql);
+                $_SESSION["usuario"]["password"] = $password;
+        
+                }
+        
+                $_SESSION["usuario"]["nombre"] = $nombre;
+                $_SESSION["usuario"]["apellidos"] = $apellidos;
+                $_SESSION["usuario"]["pais"] = $pais;
+                $_SESSION["usuario"]["telefono"] = $telefono;
+                $_SESSION["usuario"]["email"] = $email;
+        
+        
+                if ($result) {
+                    $response = array(
+                        "status" => "success",
+                        "msg" => "Modificado con exito"
+                    );
+                    return $response;
+                } else {
+                    $response = array(
+                        "status" => "Fail",
+                        "msg" => "Fallo en la base de datos"
+                    );
+                    return $response;
+                }
+                break;
 
-        if ($password == "") {
-            $sql = "UPDATE usuario 
-            SET nombre = '{$nombre}', apellidos = '{$apellidos}', pais = '{$pais}', telefono = {$telefono}, email = '{$email}'
-            WHERE
-            usuario = '{$usuario}'";
+            case 'hotelera':
 
-            $result = $this->mysqli->query($sql);
-        } else {
-            $pass = md5($password);
-
-            $sql = "UPDATE usuario 
-            SET nombre = '{$nombre}', apellidos = '{$apellidos}', pais = '{$pais}', telefono = {$telefono}, email = '{$email}', password = '{$pass}'
-            WHERE
-            usuario = '{$usuario}'";
-
-            $result = $this->mysqli->query($sql);
-        $_SESSION["usuario"]["password"] = $password;
-
+                if ($password == "") {
+                    $sql = "UPDATE hotelera 
+                    SET nombre = '{$nombre}',telefono = {$telefono}, email = '{$email}'
+                    WHERE
+                    usuario = '{$usuario}'";
+        
+                    $result = $this->mysqli->query($sql);
+                } else {
+                    $pass = md5($password);
+        
+                    $sql = "UPDATE hotelera 
+                    SET nombre = '{$nombre}', password = '{$pass}', telefono = {$telefono}, email = '{$email}'
+                    WHERE
+                    usuario = '{$usuario}'";
+        
+                    $result = $this->mysqli->query($sql);
+                $_SESSION["usuario"]["password"] = $password;
+        
+                }
+        
+                $_SESSION["usuario"]["nombre"] = $nombre;
+                $_SESSION["usuario"]["telefono"] = $telefono;
+                $_SESSION["usuario"]["email"] = $email;
+        
+        
+                if ($result) {
+                    $response = array(
+                        "status" => "success",
+                        "msg" => "Modificado con exito"
+                    );
+                    return $response;
+                } else {
+                    $response = array(
+                        "status" => "Fail",
+                        "msg" => "Fallo en la base de datos"
+                    );
+                    return $response;
+                }
+                break;
+            case 'aerolinea':
+                if ($password == "") {
+                    $sql = "UPDATE aerolinea 
+                    SET nombre = '{$nombre}',telefono = {$telefono}, email = '{$email}'
+                    WHERE
+                    usuario = '{$usuario}'";
+        
+                    $result = $this->mysqli->query($sql);
+                } else {
+                    $pass = md5($password);
+        
+                    $sql = "UPDATE hotelera 
+                    SET nombre = '{$nombre}', password = '{$pass}', telefono = {$telefono}, email = '{$email}'
+                    WHERE
+                    usuario = '{$usuario}'";
+        
+                    $result = $this->mysqli->query($sql);
+                $_SESSION["usuario"]["password"] = $password;
+        
+                }
+        
+                $_SESSION["usuario"]["nombre"] = $nombre;
+                $_SESSION["usuario"]["telefono"] = $telefono;
+                $_SESSION["usuario"]["email"] = $email;
+        
+        
+                if ($result) {
+                    $response = array(
+                        "status" => "success",
+                        "msg" => "Modificado con exito"
+                    );
+                    return $response;
+                } else {
+                    $response = array(
+                        "status" => "Fail",
+                        "msg" => "Fallo en la base de datos"
+                    );
+                    return $response;
+                }
+                break;
         }
 
-        $_SESSION["usuario"]["nombre"] = $nombre;
-        $_SESSION["usuario"]["apellidos"] = $apellidos;
-        $_SESSION["usuario"]["pais"] = $pais;
-        $_SESSION["usuario"]["telefono"] = $telefono;
-        $_SESSION["usuario"]["email"] = $email;
 
-
-        if ($result) {
-            $response = array(
-                "status" => "success",
-                "msg" => "Modificado con exito"
-            );
-            return $response;
-        } else {
-            $response = array(
-                "status" => "Fail",
-                "msg" => "Fallo en la base de datos"
-            );
-            return $response;
-        }
+        
     }
 }

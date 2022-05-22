@@ -14,9 +14,12 @@
 
     <!-- Import Boostrap -->
     <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../lib/bootstrap/css/bootstrap-utilities.css" rel="stylesheet">
     <script src="../lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Datattable -->
+    <link rel="stylesheet" href="../lib/DataTables/datatables.css">
+    <script src="../lib/DataTables/datatables.js"></script>
 
     <title>Viajes Soter</title>
 </head>
@@ -27,7 +30,7 @@
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
 
             <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <svg xmlns="http://www.w3.org/2000/svg" style="height: 30px;" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M484.6 62C502.6 52.8 522.6 48 542.8 48H600.2C627.2 48 645.9 74.95 636.4 100.2C618.2 148.9 582.1 188.9 535.6 212.2L262.8 348.6C258.3 350.8 253.4 352 248.4 352H110.7C101.4 352 92.5 347.9 86.42 340.8L13.34 255.6C6.562 247.7 9.019 235.5 18.33 230.8L50.49 214.8C59.05 210.5 69.06 210.2 77.8 214.1L135.1 239.1L234.6 189.7L87.64 95.2C77.21 88.49 78.05 72.98 89.14 67.43L135 44.48C150.1 36.52 169.5 35.55 186.1 41.8L381 114.9L484.6 62zM0 480C0 462.3 14.33 448 32 448H608C625.7 448 640 462.3 640 480C640 497.7 625.7 512 608 512H32C14.33 512 0 497.7 0 480z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" style="height: 30px;" viewBox="0 0 640 512"><path d="M484.6 62C502.6 52.8 522.6 48 542.8 48H600.2C627.2 48 645.9 74.95 636.4 100.2C618.2 148.9 582.1 188.9 535.6 212.2L262.8 348.6C258.3 350.8 253.4 352 248.4 352H110.7C101.4 352 92.5 347.9 86.42 340.8L13.34 255.6C6.562 247.7 9.019 235.5 18.33 230.8L50.49 214.8C59.05 210.5 69.06 210.2 77.8 214.1L135.1 239.1L234.6 189.7L87.64 95.2C77.21 88.49 78.05 72.98 89.14 67.43L135 44.48C150.1 36.52 169.5 35.55 186.1 41.8L381 114.9L484.6 62zM0 480C0 462.3 14.33 448 32 448H608C625.7 448 640 462.3 640 480C640 497.7 625.7 512 608 512H32C14.33 512 0 497.7 0 480z"/></svg>
             </div>
 
             <div class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -37,7 +40,7 @@
             <div class="col-md-3 text-end">
                 <button type="button" id="login" class="btn btn-outline-primary me-2 access" data-bs-toggle="modal" data-bs-target="#modal_Login">Login</button>
                 <button type="button" id="Sign" class="btn btn-primary access" data-bs-toggle="modal" data-bs-target="#modal_Sing">Sign-up</button>
-                <button type="button" id="usuario_logeado" class="btn btn-outline-primary me-2"></button>
+                <button type="button" id="usuario_logeado" class="btn btn-outline-primary me-2" onclick="config()"></button>
                 <button type="button" id="logout" class="btn btn-primary access">Logout</button>
 
             </div>
@@ -83,7 +86,7 @@
                     </div>
 
                     <div class="modal-body p-5 pt-0">
-                        <form id="login-form" class="needs-validation">
+                        <form action="#" id="login-form" class="needs-validation">
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control rounded-4" id="email_login" name="email_login" placeholder="name@example.com" required>
                                 <label for="email_login">Email address</label>
@@ -92,7 +95,7 @@
                                 <input type="password" class="form-control rounded-4" id="pass_login" name="pass_login" placeholder="Password" minlength="8" required>
                                 <label for="pass_login">Password</label>
                             </div>
-                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" data-bs-dismiss="modal" type="submit">Login</button>
+                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Login</button>
                             <button id="recovery" class="w-100 mb-2 btn btn-lg rounded-4 btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal_Recovery" type="button">Forgot password ?</button>
                         </form>
                     </div>
@@ -140,7 +143,6 @@
                                     <option value="polonoia">Polonia</option>
                                     <option value="suiza">Suiza</option>
                                     <option value="turquia">Turquia</option>
-                            </select>
                                 <label for="pais_register">pais</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -159,7 +161,7 @@
                                 <input type="password" name="pass_register" class="form-control rounded-4" id="pass_register" placeholder="Password" minlength="8" maxlength="20" required>
                                 <label for="pass_register">Password</label>
                             </div>
-                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" data-bs-dismiss="modal" type="submit">Sign up</button>
+                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign up</button>
                             <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                         </form>
                     </div>
@@ -220,7 +222,7 @@
                     <div class="modal-body text-center">
                         <div class="row">
                             <div class="col-12">
-                                <h2 id="status" class="btn btn-success"></h2>
+                                <h2 id="status" class="text-success"></h2>
                             </div>
                         </div>
                         <div class="row">
@@ -238,7 +240,7 @@
                     <div class="modal-body text-center">
                         <div class="row">
                             <div class="col-12">
-                                <h2 id="statusFail" class="btn btn-danger"></h2>
+                                <h2 id="statusFail" class="text-danger"></h2>
                             </div>
                         </div>
                         <div class="row">
@@ -250,155 +252,92 @@
                 </div>
             </div>
         </div>
-        <!-- fin de la cabecera -->
-        <!-- Formulario  de configuracion -->
-        <div class="card">
-            <div class="card-header text-center">
-                Profile
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Datos Personales</h5>
+        <!-- Modal Editar -->
+        <div class="modal fade" id="modal_Editar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="cometario_Edit_form" class="needs-validation">
+                            <div class="mb-3 col-3">
+                                <span class="badge bg-info text-dark">Referencia</span> <span id="referencia" class="badge bg-info text-dark" value="0"></span>
+                            </div>
+                            <input type="text" class="form-control rounded-4" id="referencia_Edit" name="referencia_Edit" style="display: none;">
 
-                <form id="form_Config">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="dni_Usuario" class="form-control rounded-4" id="dni_Usuario" placeholder="00000000A" pattern="[0-9]{8}[A-Za-z]{1}" readonly>
-                                <label for="dni_Usuario">Dni</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="nombre_Usuario" class="form-control rounded-4" id="nombre_Usuario" placeholder="name" maxlength="20" readonly>
-                                <label for="nombre_Usuario">Nombre</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="nombre_Edit" class="form-control rounded-4" id="nombre_Edit" placeholder="name" maxlength="20">
-                                <label for="nombre_Edit">Nombre</label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <h1><span class="badge bg-secondary">New</span></h1>
-                        </div>
-                    </div>
-                    <div class="row" id="apellidos_display">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="apellidos_Usuario" class="form-control rounded-4" id="apellidos_Usuario" placeholder="subname subname2" maxlength="20" readonly>
-                                <label for="apellidos_Usuario">Apellidos</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="apellidos_Edit" class="form-control rounded-4" id="apellidos_Edit" placeholder="subname subname2" maxlength="20">
-                                <label for="apellidos_Edit">Apellidos</label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <h1><span class="badge bg-secondary">New</span></h1>
-                        </div>
-                    </div>
-                    <div class="row" id="pais_display">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="pais_Usuario" class="form-control rounded-4" id="pais_Usuario" placeholder="subname subname2" maxlength="20" readonly>
-                                <label for="pais_Usuario">Pais</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <select name="pais_Edit" class="form-control rounded-4" id="pais_Edit">
-                                <option value=""></option>
-                                <option value="spain">spain</option>
-                                <option value="eng">eng</option>
-                                <option value="usa">usa</option>
+                            <label class="mb-1">Puntuacion</label>
+                            <div class="form-floating mb-3 col-4">
+                                <select id="puntuacion_Edit" name="puntuacion_Edit" class="form-select" aria-label="Default select example" required>
+                                <option selected="5">5</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
                             </select>
-                                <label for="pais_Edit">pais</label>
                             </div>
-                        </div>
-                        <div class="col-2">
-                            <h1><span class="badge bg-secondary">New</span></h1>
-                        </div>
+                            <label class="mb-1">Destino</label>
+                            <div class="form-floating mb-3 col-4">
+                                <input type="text" class="form-control rounded-4" id="destino_Edit" name="destino_Edit" required>
+                            </div>
+                            <label class="mb-1">Reseña</label>
+                            <div class="form-floating mb-3 col-8">
+                                <textarea class="form-control" id="comentario_Edit" name="comentario_Edit" rows="3" required></textarea>
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Saves</button>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="telefono_Usuario" class="form-control rounded-4" id="telefono_Usuario" placeholder="000000000" pattern="[0-9]{9}" readonly>
-                                <label for="telefono_Usuario">Telefono</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="telefono_Edit" class="form-control rounded-4" id="telefono_Edit" placeholder="000000000" pattern="[0-9]{9}">
-                                <label for="telefono_Edit">Telefono</label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <h1><span class="badge bg-secondary">New</span></h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="email" name="email_Usuario" class="form-control rounded-4" id="email_Usuario" placeholder="name@example.com" readonly>
-                                <label for="email_Usuario">Email address</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="email" name="email_Edit" class="form-control rounded-4" id="email_Edit" placeholder="name@example.com">
-                                <label for="email_Edit">Email address</label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <h1><span class="badge bg-secondary">New</span></h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="text" name="usuario_Usuario" class="form-control rounded-4" id="usuario_Usuario" placeholder="usu" maxlength="20" readonly>
-                                <label for="usuario_Usuario">Usuario</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="password" name="password_Usuario" class="form-control rounded-4" id="password_Usuario" placeholder="Password" minlength="8" maxlength="20" readonly>
-                                <label for="password_Usuario">Password</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating mb-3">
-                                <input type="password" name="password_Edit" class="form-control rounded-4" id="password_Edit" placeholder="Password" minlength="8" maxlength="20">
-                                <label for="password_Edit">Password</label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <h1><span class="badge bg-secondary">New</span></h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 text-center">
-                        </div>
-                        <div class="col-4 text-center">
-                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" data-bs-dismiss="modal" type="submit">Update</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
-            <div class="card-footer text-muted text-center">
-                ¡No se puede cambiar el Usuario disculpen las molestias!
+        </div>
+        <!-- fin de la cabecera -->
+        <!-- Reseña Cabecera -->
+        <div class="position-static mt-3 mb-3">
+            <h1><span id="cabecera_Comentario" class="badge bg-info text-dark">Reseñas</span></h1>
+        </div>
+        <!-- Reseña Tabla -->
+        <div class="row">
+            <div id="containe_table" class="col-12">
+                <table id="tabla" class="" width="100%"></table>
+            </div>
+        </div>
+        <!-- Reseña Añadir Reseña -->
+        <div id="formulario_comentario" class="row">
+            <div class="col-8">
+                <form id="cometario_form" class="needs-validation">
+                    <div class="mb-3 col-3">
+                        <span id="usuario_comentario" class="badge bg-info text-dark">usuario</span>
+                    </div>
+                    <label class="mb-1">Puntuacion</label>
+                    <div class="form-floating mb-3 col-4">
+                        <select id="puntuacion" name="puntuacion" class="form-select" aria-label="Default select example" required>
+                        <option selected="5">5</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    </div>
+                    <label class="mb-1">Destino</label>
+                    <div class="form-floating mb-3 col-4">
+                        <input type="text" class="form-control rounded-4" id="destino" name="destino" required>
+                    </div>
+                    <label class="mb-1">Reseña</label>
+                    <div class="form-floating mb-3 col-8">
+                        <textarea class="form-control" id="comentario" name="comentario" rows="3" required></textarea>
+                    </div>
+                    <button class="mb-2 btn btn-lg rounded-4 btn-primary col-4" type="submit">Comentar</button>
+                </form>
             </div>
         </div>
     </div>
     <!-- Import JS -->
-    <script src="../js/config.js"></script>
+    <script src="../js/comentarios.js"></script>
+
 </body>
 
 </html>
