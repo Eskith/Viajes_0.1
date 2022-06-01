@@ -262,11 +262,20 @@ function mostratabla(id, tipo) {
                 "destroy": true,
                 responsive: true,
                 "searching": true,
-                "pageLength": 14,
-                // dom: 'Bfrtip'
-                dom: 'QBftpi',
+                "pageLength": 8,
+                dom: 'Bftip',
+                /*
+                * Etiquetas del DOM
+                * Q : Aplica un Filtro
+                * B : Los botones
+                * f : Search
+                * t : pone la paginacion abajo
+                * p : pone la paginacion
+                * i : mustra la info de los registros totales y cuantos muestra
+                * H : cabeceras especiales
+                */
                 "buttons": [{
-                    // Botón para Excel
+                    // Botón para filtrar las columnas
                     extend: 'colvis',
                     className: 'btn btn-secundary me-2 rounded'
                 }, {
@@ -278,6 +287,7 @@ function mostratabla(id, tipo) {
                     extend: 'pdf',
                     className: 'btn btn-danger'
                 }],
+                // traduccion
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",

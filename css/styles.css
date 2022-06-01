@@ -1,0 +1,13 @@
+#title, .bg-info {
+    font-family: 'Tangerine', serif;
+    font-size: 45px;
+    text-shadow: 4px 4px 4px #aaa;
+}
+
+.plus{
+    width: 15%;
+}
+
+.bg-info{
+    background-color: #99e6ff !important;
+}

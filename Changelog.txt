@@ -16,7 +16,7 @@ Version 0.02
 - se actualiza y mejoran las tablas de reseñas haciendolas responsive
 
 Version 0.03
-- se ha solucionado erorres con el UTF-8 al mostrarlos en lñas tablas
+- se ha solucionado erorres con el UTF-8 al mostrarlos en las tablas
 - se ha solucionado problemas con los modales que no se cerraban adecuadamente
 - se ha creado el adminController
 - se ha creado el adminModal
@@ -27,3 +27,9 @@ Version 0.04
 - se ha creado el controller de vuelos
 - se ha creado el model de vuelos
 - se han solucionado varios bugs y fallos
+
+Version 0.05
+- se ha creado la vista de Hoteles
+- se ha creado el controller de Hoteles
+- se ha creado el model de Hoteles
+- se han correjido fallos en las tablas  y en algunos modales

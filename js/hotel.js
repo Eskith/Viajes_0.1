@@ -1,8 +1,9 @@
 $(document).ready(function() {
     let url = "../controller/accessController.php";
     let usuario;
-    var tablaVuelos = "";
-    var tablaVuelosAerolinea = "";
+    var tablaHoteles = "";
+    var tablaReservas = "";
+    var tabla_Hoteles_Hotelera = "";
     let numPlazas = "";
     let numPlazasvips = "";
 
@@ -29,7 +30,7 @@ $(document).ready(function() {
                         $("#login").css("display", "none");
                         $("#Sign").css("display", "none");
                         $("#logout").css("display", "");
-                        mostratabla("vuelos_Reservar", "#tabla_vuelos");
+                        mostratabla("hoteles_Reserva", "#tabla_hoteles");
                         $("#usuario_display").css("display", "");
                         mostratabla("reservas", "#tabla_reserva");
                         break;
@@ -45,24 +46,26 @@ $(document).ready(function() {
                         $("#logout").css("display", "");
 
                         $("#admin_display").css("display", "");
-                        mostratabla("vuelos", "#tabla_vuelos");
-                        mostratabla("vuelos_Admin", "#tabla_vuelos_Admin");
+                        mostratabla("hoteles", "#tabla_hoteles");
+                        mostratabla("hoteles_Admin", "#tabla_Hoteles_Admin");
                         mostratabla("reservas_Admin", "#tabla_Reservas_Admin");
 
                         break;
 
-                    case "aerolinea":
+                    case "hotelera":
                         $("#usuario_logeado").css("display", "");
                         $("#usuario_logeado").html(response.usuario);
                         usuario = response.usuario;
                         $("#login").css("display", "none");
                         $("#Sign").css("display", "none");
                         $("#logout").css("display", "");
-                        $("#aerolinea_display").css("display", "");
-                        mostratabla("vuelos", "#tabla_vuelos");
-                        mostratabla("vuelos_Aerolinea", "#tabla_vuelos_aerolinea");
-                        mostratabla("reservas_Aerolinea", "#table_aerolinea_reservas");
+                        $("#hotel_display").css("display", "");
+                        mostratabla("hoteles", "#tabla_hoteles");
+                        mostratabla("hoteles_hotelera", "#tabla_hoteles_hotelera");
+
+                        mostratabla("reservas_hotel", "#table_hotel_reservas");
                         break;
+
                     default:
                         $("#usuario_logeado").css("display", "");
                         $("#usuario_logeado").html(response.usuario);
@@ -70,13 +73,11 @@ $(document).ready(function() {
                         $("#login").css("display", "none");
                         $("#Sign").css("display", "none");
                         $("#logout").css("display", "");
-                        mostratabla("vuelos_Reservar", "#tabla_vuelos");
-                        $("#usuario_display").css("display", "");
-                        mostratabla("reservas", "#tabla_reserva");
+                        mostratabla("hoteles", "#tabla_hoteles");
                         break;
                 }
             } else {
-                mostratabla("vuelos", "#tabla_vuelos");
+                mostratabla("hoteles", "#tabla_hoteles");
 
             }
         }
@@ -131,30 +132,37 @@ $(document).ready(function() {
                             $("#Sign").css("display", "none");
                             $("#logout").css("display", "");
                             $("#admin_display").css("display", "");
-                            mostratabla("vuelos", "#tabla_vuelos");
-                            mostratabla("vuelos_Admin", "#tabla_vuelos_Admin");
+                            mostratabla("hoteles", "#tabla_vuelos");
+                            mostratabla("hoteles_Admin", "#tabla_Hoteles_Admin");
                             mostratabla("reservas_Admin", "#tabla_Reservas_Admin");
+                            location.reload();
+
                             break;
 
-                        case "2":
+                        case "3":
                             $("#usuario_logeado").css("display", "");
                             $("#usuario_logeado").html(response.usuario);
                             usuario = response.usuario;
                             $("#login").css("display", "none");
                             $("#Sign").css("display", "none");
                             $("#logout").css("display", "");
-                            $("#aerolinea_display").css("display", "");
-                            mostratabla("vuelos", "#tabla_vuelos");
-                            mostratabla("vuelos_Aerolinea", "#tabla_vuelos_aerolinea");
+                            $("#hotel_display").css("display", "");
+                            mostratabla("hoteles", "#tabla_hoteles");
+                            mostratabla("hoteles_hotelera", "#tabla_hoteles_hotelera");
+
+                            mostratabla("reservas_Aerolinea", "#table_aerolinea_reservas");
                             location.reload();
                             break;
                         default:
                             $("#usuario_logeado").css("display", "");
                             $("#usuario_logeado").html(response.usuario);
+                            usuario = response.usuario;
                             $("#login").css("display", "none");
                             $("#Sign").css("display", "none");
                             $("#logout").css("display", "");
-                            mostratabla("usu");
+                            mostratabla("vuelos_Reservar", "#tabla_vuelos");
+                            $("#usuario_display").css("display", "");
+                            mostratabla("reservas", "#tabla_reserva");
                             break;
                     }
                 }
@@ -301,21 +309,25 @@ function mostratabla(tipo, ubicacion) {
     // muestra la tabla
     $.ajax({
         type: "POST",
-        url: "../controller/vuelosController.php",
+        url: "../controller/hotelController.php",
         data: data,
         dataType: "JSON",
         success: function(response) {
             switch (tipo) {
-                case "vuelos_Reservar":
-                    tablaVuelos = response.data;
+                case "hoteles_Reserva":
+                    tablahoteles = response.data;
                     break;
 
-                case "vuelos_Aerolinea":
-                    tablaVuelosAerolinea = response.data;
+                case "hoteles_hotelera":
+                    tabla_Hoteles_Hotelera = response.data;
                     break;
 
-                case "vuelos_Admin":
-                    tablaVuelosAerolinea = response.data;
+                case "hoteles_Admin":
+                    tablaHoteles = response.data;
+                    break;
+
+                case "reservas_Admin":
+                    tablaReservas = response.data;
                     break;
             }
 
@@ -358,59 +370,35 @@ function mostratabla(tipo, ubicacion) {
 
 function reservar(id) {
 
-    let index = tablaVuelos.findIndex(tablaVuelos => tablaVuelos.Vuelo == id);
+    let index = tablahoteles.findIndex(tablahoteles => tablahoteles.Nombre == id);
 
-    let target_data = tablaVuelos[index];
-    $("#aerolinea_reserva").val(target_data.Aerolinea);
-    $("#matricula_reserva").val(target_data.Vuelo);
-    $("#salida_pais_reserva").val(target_data["Salida Pais"]);
-    $("#salida_ciudad_reserva").val(target_data["Salida Ciudad"]);
-    $("#llegada_pais_reserva").val(target_data["Destino Pais"]);
-    $("#llegada_ciudad_reserva").val(target_data["Destino Ciudad"]);
-    $("#salida_reserva").val(target_data.Salida);
-    $("#llegada_reserva").val(target_data.LLegada);
+    let target_data = tablahoteles[index];
+    console.log(target_data);
+    $("#hotel_nombre_reserva").val(target_data.Nombre);
+    $("#ubicacion_reserva").val(target_data.Ubicacion);
     $("#precio_reserva").val(target_data.Precio);
-    $("#precio2_reserva").val(target_data["Primera Clase Precio"]);
-    $("#precio3_reserva").val(target_data["Precio Maleta (Kg)"]);
-    $("#kg_max_reserva").val(target_data["Kg Maximo"]);
-    numPlazas = target_data["Plazas"];
-    numPlazasvips = target_data["Primera Clase"];
 
 
 }
 
 function editar(id, tipo) {
-    let array;
-    let matricula;
-    let fecha;
-    let target_data;
+
     switch (tipo) {
 
 
         case 0:
-            array = id.split("+");
-            matricula = array[0];
-            fecha = array[1];
+            index = tabla_Hoteles_Hotelera.findIndex(tabla_Hoteles_Hotelera => tabla_Hoteles_Hotelera.Nombre == id);
+            target_data = tabla_Hoteles_Hotelera[index];
 
-            index = tablaVuelosAerolinea.findIndex(tablaVuelosAerolinea => tablaVuelosAerolinea.Matricula == matricula && tablaVuelosAerolinea.Salida == fecha);
-            target_data = tablaVuelosAerolinea[index];
+            $("#nombre_hotel").val(target_data.Nombre);
+            $("#compañia").val(target_data.Compañia);
+            $("#pais_hotel").val(target_data.Pais);
+            $("#ciudad_hotel").val(target_data.Ciudad);
+            $("#ubicacion_hotel").val(target_data.Ubicacion);
+            $("#estrellas_hotel").val(target_data.Estrellas);
+            $("#habitaciones").val(target_data.Habitaciones);
+            $("#Precio").val(target_data.Precio);
 
-            $("#matricula_aerolineaOld").val(target_data.Aerolinea);
-            $("#aerolinea_aerolinea").val(target_data.Aerolinea);
-            $("#matricula_aerolinea").val(target_data.Matricula);
-            $("#salida_pais_aerolinea").val(target_data["Salida Pais"]);
-            $("#salida_ciudad_aerolinea").val(target_data["Salida Ciudad"]);
-            $("#llegada_pais_aerolinea").val(target_data["Destino Pais"]);
-            $("#llegada_ciudad_aerolinea").val(target_data["Destino Ciudad"]);
-            $("#salida_aerolinea").val(target_data.Salida);
-            $("#salida_aerolineaold").val(target_data.Salida);
-            $("#llegada_aerolineaold").val(target_data.LLegada);
-            $("#precio_aerolinea").val(target_data.Precio);
-            $("#precio2_aerolinea").val(target_data["Primera Clase Precio"]);
-            $("#precio3_aerolinea").val(target_data["Precio Maleta (Kg)"]);
-            $("#kg_max_aerolinea").val(target_data["Peso Maximo"]);
-            $("#billetes_aerolinea").val(target_data.Plazas);
-            $("#billetes1_aerolinea").val(target_data["Primera Clase"]);
 
             break;
         case 1:
@@ -441,6 +429,22 @@ function editar(id, tipo) {
 
             break;
 
+        case 2:
+            index = tablaHoteles.findIndex(tablaHoteles => tablaHoteles.Nombre == id);
+            target_data = tablaHoteles[index];
+
+            $("#nombre_hotel").val(target_data.Nombre);
+            $("#compañia").val(target_data.Compañia);
+            $("#pais_hotel").val(target_data.Pais);
+            $("#ciudad_hotel").val(target_data.Ciudad);
+            $("#ubicacion_hotel").val(target_data.Ubicacion);
+            $("#estrellas_hotel").val(target_data.Estrellas);
+            $("#habitaciones").val(target_data.Habitaciones);
+            $("#Precio").val(target_data.Precio);
+
+
+            break;
+
         default:
             break;
     }
@@ -455,8 +459,8 @@ $("#form_reserva").submit(function(e) {
     e.preventDefault();
 
     let form = $("#form_reserva").serializeArray();
-    form = form.concat({ name: "service", value: "reservar" }, { name: "plazas", value: numPlazas }, { name: "plazasvips", value: numPlazasvips });
-    url = "../controller/vuelosController.php";
+    form = form.concat({ name: "service", value: "reservar" });
+    url = "../controller/hotelController.php";
 
     $.ajax({
         data: form,
@@ -482,8 +486,8 @@ $("#form_reserva").submit(function(e) {
 $("#form_edit").submit(function(e) {
     e.preventDefault();
     let form = $("#form_edit").serializeArray();
-    form = form.concat({ name: "service", value: "editar" }, { name: "tipo", value: "0" });
-    url = "../controller/vuelosController.php";
+    form = form.concat({ name: "service", value: "editar" });
+    url = "../controller/hotelController.php";
 
     $.ajax({
         data: form,
@@ -510,7 +514,7 @@ $("#form_add").submit(function(e) {
     e.preventDefault();
     let form = $("#form_add").serializeArray();
     form = form.concat({ name: "service", value: "añadir" });
-    url = "../controller/vuelosController.php";
+    url = "../controller/hotelController.php";
 
     $.ajax({
         data: form,
@@ -534,7 +538,7 @@ $("#form_add").submit(function(e) {
 });
 
 function eliminar(id, tipo) {
-    url = "../controller/vuelosController.php";
+    url = "../controller/hotelController.php";
 
 
     let data = { "id": id, "tipo": tipo, "service": "delete" };
@@ -563,7 +567,7 @@ function eliminar(id, tipo) {
 }
 
 function pagar(id) {
-    url = "../controller/vuelosController.php";
+    url = "../controller/hotelController.php";
 
 
     let data = { "id": id, "service": "pay" };
@@ -582,9 +586,9 @@ function pagar(id) {
             } else {
                 $("#mensaje_Status_Success").modal("show");
                 $("#status").html(response.msg);
-                mostratabla("vuelos", "#tabla_vuelos");
-                mostratabla("vuelos_Aerolinea", "#tabla_vuelos_aerolinea");
-                location.reload();
+                mostratabla("hoteles", "#tabla_hoteles");
+                mostratabla("hoteles_Admin", "#tabla_Hoteles_Admin");
+                mostratabla("reservas_Admin", "#tabla_Reservas_Admin");
             }
         },
 
@@ -601,5 +605,5 @@ function ocultarDislay() {
     $("#formulario_comentario").css("display", "none");
     $("#admin_display").css("display", "none");
     $("#usuario_display").css("display", "none");
-    $("#aerolinea_display").css("display", "none");
+    $("#hotel_display").css("display", "none");
 }

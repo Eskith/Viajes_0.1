@@ -22,13 +22,18 @@
     <link rel="stylesheet" href="./lib/DataTables/datatables.css">
     <script src="./lib/DataTables/datatables.js"></script>
 
+    <!-- Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+
+    <link rel="stylesheet" href="./css/styles.css">
+
     <title>Viajes Soter</title>
 </head>
 
 <body>
     <div class="container">
         <!-- Inicio Cabecera -->
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between mb-2 border-bottom">
 
             <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 <svg xmlns="http://www.w3.org/2000/svg" style="height: 30px;" viewBox="0 0 640 512">
@@ -38,7 +43,7 @@
                 </svg>
             </div>
 
-            <div class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <div id="title" class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 Viajes Soter
             </div>
 
@@ -66,14 +71,14 @@
                             <a class="nav-link" href="./view/vuelos.html">Vuelos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Hoteles</a>
+                            <a class="nav-link" href="./view/hotel.html">Hoteles</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link disabled" href="#">Vuelos + Hotel</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Ofertas</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="./view/comentarios.html">Reseñas</a>
                         </li>
@@ -263,7 +268,7 @@
         <!-- Panel de Control -->
         <div id="administrador">
             <div class="row">
-                <div class="col-6">
+                <div class="text-center">
                     <div class="position-static mt-3 mb-3">
                         <h1><span id="cabecera_Panel_Control" class="badge bg-info text-dark">Panel de Control</span>
                         </h1>
@@ -271,11 +276,26 @@
                 </div>
             </div>
             <div>
-                <button class="w-30 mb-2 btn btn-lg rounded btn-success" data-bs-toggle="modal" data-bs-target="#modal_Sing_Admin" type="button"> + </button>
+                <button class="plus mb-2 btn btn-lg rounded btn-success" data-bs-toggle="modal" data-bs-target="#modal_Sing_Admin" type="button"> + </button>
+            </div>
+            <div class="text-center position-static mt-3 mb-3">
+                <h1><span class="badge bg-info text-dark">Usuarios</span></h1>
             </div>
             <div class="row">
                 <div id="containe_Table_Usuario" class="col-12">
                     <table id="table_Usuario" class="table table-bordered" width="100%"></table>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-6">
+                    <div class="position-static mt-3 mb-3">
+                        <h1><span class="badge bg-info text-dark">Aerolineas</span></h1>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="position-static mt-3 mb-3">
+                        <h1><span class=" badge bg-info text-dark">Hotelera</span></h1>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -286,7 +306,7 @@
                     <table id="table_Hotelera" class="table table-bordered" width="100%"></table>
                 </div>
             </div>
-            <div class="position-static mt-3 mb-3">
+            <div class="text-center position-static mt-3 mb-3">
                 <h1><span id="vista_previa_index" class="badge bg-info text-dark">Vista Previa Home</span></h1>
             </div>
         </div>

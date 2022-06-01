@@ -203,7 +203,7 @@ class Vuelos
 
     function reservar($matricula, $numBilletes, $numBilletesClase, $plazas, $plazasvips, $salida, $nombre, $dni, $aerolinea, $llegada, $maletas, $precio, $preciovip, $preciokg, $kgllevados)
     {
-        $sql = "SELECT SUM(numero_plazas_reservadas_normales) as 'Plazas Normales', SUM(numero_plazas_reservadas_primera_clase) as 'Primera Clase' FROM `reserva_vuelo` WHERE matricula_avion = {$matricula} AND fecha_salida >= '{$salida}';";
+        $sql = "SELECT SUM(numero_plazas_reservadas_normales) as 'Plazas Normales', SUM(numero_plazas_reservadas_primera_clase) as 'Primera Clase' FROM `reserva_vuelo` WHERE matricula_avion = '{$matricula}' AND fecha_salida >= '{$salida}';";
 
         $result = $this->mysqli->query($sql);
 

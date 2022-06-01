@@ -37,7 +37,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" style="height: 30px;" viewBox="0 0 640 512"><path d="M484.6 62C502.6 52.8 522.6 48 542.8 48H600.2C627.2 48 645.9 74.95 636.4 100.2C618.2 148.9 582.1 188.9 535.6 212.2L262.8 348.6C258.3 350.8 253.4 352 248.4 352H110.7C101.4 352 92.5 347.9 86.42 340.8L13.34 255.6C6.562 247.7 9.019 235.5 18.33 230.8L50.49 214.8C59.05 210.5 69.06 210.2 77.8 214.1L135.1 239.1L234.6 189.7L87.64 95.2C77.21 88.49 78.05 72.98 89.14 67.43L135 44.48C150.1 36.52 169.5 35.55 186.1 41.8L381 114.9L484.6 62zM0 480C0 462.3 14.33 448 32 448H608C625.7 448 640 462.3 640 480C640 497.7 625.7 512 608 512H32C14.33 512 0 497.7 0 480z"/></svg>
             </div>
 
-            <div id="title" class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <div id="title" class="nav col-12 col-md-auto mb-3 justify-content-center mb-md-0">
                 Viajes Soter
             </div>
 
@@ -269,124 +269,58 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Vuelo</h5>
+                                <h5 class="card-title">Reservar</h5>
 
                                 <form id="form_reserva">
                                     <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="aerolinea_reserva" class="form-control rounded-4" id="aerolinea_reserva" readonly>
-                                                <label for="aerolinea_reserva">Aerolinea</label>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="hotel_nombre_reserva" class="form-control rounded-4" id="hotel_nombre_reserva" readonly>
+                                                    <label for="hotel_nombre_reserva">Nombre Hotel</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="ubicacion_reserva" class="form-control rounded-4" id="ubicacion_reserva" readonly>
+                                                    <label for="ubicacion_reserva">Ubicacion</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="matricula_reserva" class="form-control rounded-4" id="matricula_reserva" readonly>
-                                                <label for="matricula_reserva">Vuelo</label>
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="form-floating mb-3">
+                                                    <input type="numbre" name="habitaciones_reserva" class="form-control rounded-4" id="habitaciones_reserva">
+                                                    <label for="habitaciones_reserva">Numero Habitaciones</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="precio_reserva" class="form-control rounded-4" id="precio_reserva" readonly>
+                                                    <label for="precio_reserva">Precio Persona</label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="salida_pais_reserva" class="form-control rounded-4" id="salida_pais_reserva" readonly>
-                                                <label for="salida_pais_reserva">Pais de Salida</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-floating mb-3">
+                                                    <input type="datetime-local" name="entrada_reserva" class="form-control rounded-4" id="entrada_reserva">
+                                                    <label for="entrada_reserva">Entrada</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-floating mb-3">
+                                                    <input type="datetime-local" name="salida_reserva" class="form-control rounded-4" id="salida_reserva">
+                                                    <label for="salida_reserva">Salida</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="salida_ciudad_reserva" class="form-control rounded-4" id="salida_ciudad_reserva" readonly>
-                                                <label for="salida_ciudad_reserva">Ciudad de Salida</label>
+                                        <div class="row">
+                                            <div class="col-4 text-center">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="llegada_pais_reserva" class="form-control rounded-4" id="llegada_pais_reserva" readonly>
-                                                <label for="llegada_pais_reserva">Pais de Destino</label>
+                                            <div class="col-4 text-center">
+                                                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" data-bs-dismiss="modal" type="submit">Reservar</button>
                                             </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="llegada_ciudad_reserva" class="form-control rounded-4" id="llegada_ciudad_reserva" readonly>
-                                                <label for="llegada_ciudad_reserva">Ciudad de Destino</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="datetime" name="salida_reserva" class="form-control rounded-4" id="salida_reserva" readonly>
-                                                <label for="salida_reserva">Salida</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="datetime" name="llegada_reserva" class="form-control rounded-4" id="llegada_reserva" readonly>
-                                                <label for="llegada_reserva">LLegada</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="precio_reserva" class="form-control rounded-4" id="precio_reserva" readonly>
-                                                <label for="precio_reserva">Precio</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="precio2_reserva" class="form-control rounded-4" id="precio2_reserva" readonly>
-                                                <label for="precio2_reserva">Precio 1º</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="precio3_reserva" class="form-control rounded-4" id="precio3_reserva" readonly>
-                                                <label for="precio3_reserva">Precio Maleta</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="billetes_reserva" class="form-control rounded-4" id="billetes_reserva" value="0">
-                                                <label for="billetes_reserva">Nº de Billetes</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="billetes1_reserva" class="form-control rounded-4" id="billetes1_reserva" value="0">
-                                                <label for="billetes1_reserva">Nº de Billetes 1º Clase</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="kg_max_reserva" class="form-control rounded-4" id="kg_max_reserva" readonly>
-                                                <label for="kg_max_reserva">Kg Maximos</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="kg_reserva" class="form-control rounded-4" id="kg_reserva" value="0">
-                                                <label for="kg_reserva">Kg Maletas</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="maletas_reserva" class="form-control rounded-4" id="maletas_reserva" value="0">
-                                                <label for="maletas_reserva">Nº Maletas</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4 text-center">
-                                        </div>
-                                        <div class="col-4 text-center">
-                                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" data-bs-dismiss="modal" type="submit">Reservar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -411,121 +345,57 @@
                                 <h5 class="card-title">Editar</h5>
 
                                 <form id="form_edit">
-                                    <div class="row" style="display: none;">
+                                    <div class="row">
                                         <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="text" name="matricula_aerolineaOld" class="form-control rounded-4" id="matricula_aerolineaOld" readonly>
-                                                <label for="matricula_aerolineaOld">Vuelo</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="datetime" name="salida_aerolineaold" class="form-control rounded-4" id="salida_aerolineaold" readonly>
-                                                <label for="salida_aerolineaold">Salida</label>
+                                                <input type="text" name="nombre_hotel" class="form-control rounded-4" id="nombre_hotel" readonly>
+                                                <label for="nombre_hotel">Hotel</label>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="datetime" name="llegada_aerolineaold" class="form-control rounded-4" id="llegada_aerolineaold" readonly>
-                                                <label for="llegada_aerolineaold">llegada</label>
+                                                <input type="text" name="compañia" class="form-control rounded-4" id="compañia" readonly>
+                                                <label for="compañia">Compañia</label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
+                                        <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="text" name="aerolinea_aerolinea" class="form-control rounded-4" id="aerolinea_aerolinea" readonly>
-                                                <label for="aerolinea_aerolinea">Aerolinea</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="matricula_aerolinea" class="form-control rounded-4" id="matricula_aerolinea" readonly>
-                                                <label for="matricula_aerolinea">Vuelo</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="salida_pais_aerolinea" class="form-control rounded-4" id="salida_pais_aerolinea">
-                                                <label for="salida_pais_aerolinea">Pais de Salida</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="salida_ciudad_aerolinea" class="form-control rounded-4" id="salida_ciudad_aerolinea">
-                                                <label for="salida_ciudad_aerolinea">Ciudad de Salida</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="llegada_pais_aerolinea" class="form-control rounded-4" id="llegada_pais_aerolinea">
-                                                <label for="llegada_pais_aerolinea">Pais de Destino</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="llegada_ciudad_aerolinea" class="form-control rounded-4" id="llegada_ciudad_aerolinea">
-                                                <label for="llegada_ciudad_aerolinea">Ciudad de Destino</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="input" name="salida_aerolinea" value="" class="form-control rounded-4" id="salida_aerolinea" readonly>
-                                                <label for="salida_aerolinea">Salida</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="datetime-local" name="llegada_aerolinea" class="form-control rounded-4" id="llegada_aerolinea">
-                                                <label for="llegada_aerolinea">LLegada</label>
+                                                <input type="text" name="pais_hotel" class="form-control rounded-4" id="pais_hotel">
+                                                <label for="pais_hotel">Pais</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="number" step="any" name="precio_aerolinea" class="form-control rounded-4" id="precio_aerolinea">
-                                                <label for="precio_aerolinea">Precio</label>
+                                                <input type="text" name="ciudad_hotel" class="form-control rounded-4" id="ciudad_hotel">
+                                                <label for="ciudad_hotel">Ciudad</label>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-7">
                                             <div class="form-floating mb-3">
-                                                <input type="number" step="any" name="precio2_aerolinea" class="form-control rounded-4" id="precio2_aerolinea">
-                                                <label for="precio2_aerolinea">Precio 1º</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" step="any" name="precio3_aerolinea" class="form-control rounded-4" id="precio3_aerolinea">
-                                                <label for="precio3_aerolinea">Precio Maleta</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="billetes_aerolinea" class="form-control rounded-4" id="billetes_aerolinea" value="0">
-                                                <label for="billetes_aerolinea">Plazas Normales</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="billetes1_aerolinea" class="form-control rounded-4" id="billetes1_aerolinea" value="0">
-                                                <label for="billetes1_aerolinea">1º Clase</label>
+                                                <input type="text" name="ubicacion_hotel" class="form-control rounded-4" id="ubicacion_hotel">
+                                                <label for="ubicacion_hotel">Ubicacion</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="number" name="kg_max_aerolinea" class="form-control rounded-4" id="kg_max_aerolinea">
-                                                <label for="kg_max_aerolinea">Kg Maximos</label>
+                                                <input type="number" name="estrellas_hotel" class="form-control rounded-4" id="estrellas_hotel">
+                                                <label for="estrellas_hotel">Estrellas</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" name="habitaciones" class="form-control rounded-4" id="habitaciones">
+                                                <label for="habitaciones">Habitaciones</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" step="0.01" name="Precio" class="form-control rounded-4" id="Precio">
+                                                <label for="Precio">Precio</label>
                                             </div>
                                         </div>
                                     </div>
@@ -543,8 +413,8 @@
                 </div>
             </div>
         </div>
-        <!-- modal add Vuelo -->
-        <div class="modal fade" id="modal_add_Vuelo" tabindex="-1" aria-labelledby="modal_usuario_editLabel" aria-hidden="true">
+        <!-- modal add Hotel -->
+        <div class="modal fade" id="modal_add_hotel" tabindex="-1" aria-labelledby="modal_add_hotelLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -559,94 +429,50 @@
 
                                 <form id="form_add">
                                     <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="matricula_aerolinea_add" class="form-control rounded-4" id="matricula_aerolinea_add">
-                                                <label for="matricula_aerolinea_add">Matricula</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="salida_pais_aerolinea_add" class="form-control rounded-4" id="salida_pais_aerolinea_add">
-                                                <label for="salida_pais_aerolinea_add">Pais de Salida</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="salida_ciudad_aerolinea_add" class="form-control rounded-4" id="salida_ciudad_aerolinea_add">
-                                                <label for="salida_ciudad_aerolinea_add">Ciudad de Salida</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="llegada_pais_aerolinea_add" class="form-control rounded-4" id="llegada_pais_aerolinea_add">
-                                                <label for="llegada_pais_aerolinea_add">Pais de Destino</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="llegada_ciudad_aerolinea_add" class="form-control rounded-4" id="llegada_ciudad_aerolinea_add">
-                                                <label for="llegada_ciudad_aerolinea_add">Ciudad de Destino</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-6">
                                             <div class="form-floating mb-3">
-                                                <input type="datetime-local" name="salida_aerolinea_add" value="" class="form-control rounded-4" id="salida_aerolinea_add">
-                                                <label for="salida_aerolinea_add">Salida</label>
+                                                <input type="text" name="nombre_hotel_add" class="form-control rounded-4" id="nombre_hotel_add">
+                                                <label for="nombre_hotel_add">Hotel</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-floating mb-3">
-                                                <input type="datetime-local" name="llegada_aerolinea_add" class="form-control rounded-4" id="llegada_aerolinea_add">
-                                                <label for="llegada_aerolinea_add">LLegada</label>
+                                                <input type="text" name="pais_hotel_add" class="form-control rounded-4" id="pais_hotel_add">
+                                                <label for="pais_hotel_add">Pais</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="number" step=".01" name="precio_aerolinea_add" class="form-control rounded-4" id="precio_aerolinea_add">
-                                                <label for="precio_aerolinea_add">Precio</label>
+                                                <input type="text" name="ciudad_hotel_add" class="form-control rounded-4" id="ciudad_hotel_add">
+                                                <label for="ciudad_hotel_add">Ciudad</label>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-7">
                                             <div class="form-floating mb-3">
-                                                <input type="number" step=".01" name="precio2_aerolinea_add" class="form-control rounded-4" id="precio2_aerolinea_add">
-                                                <label for="precio2_aerolinea_add">Precio 1º</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" step=".01" name="precio3_aerolinea_add" class="form-control rounded-4" id="precio3_aerolinea_add">
-                                                <label for="precio3_aerolinea_add">Precio Maleta</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="billetes_aerolinea_add" class="form-control rounded-4" id="billetes_aerolinea_add" value="0">
-                                                <label for="billetes_aerolinea_add">Plazas Normales</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="billetes1_aerolinea_add" class="form-control rounded-4" id="billetes1_aerolinea_add" value="0">
-                                                <label for="billetes1_aerolinea_add">1º Clase</label>
+                                                <input type="text" name="ubicacion_hotel_add" class="form-control rounded-4" id="ubicacion_hotel_add">
+                                                <label for="ubicacion_hotel_add">Ubicacion</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-floating mb-3">
-                                                <input type="number" name="kg_max_aerolinea_add" class="form-control rounded-4" id="kg_max_aerolinea_add">
-                                                <label for="kg_max_aerolinea_add">Kg Maximos</label>
+                                                <input type="number" name="estrellas_hotel_add" class="form-control rounded-4" id="estrellas_hotel_add">
+                                                <label for="estrellas_hotel_add">Estrellas</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" name="habitaciones_add" class="form-control rounded-4" id="habitaciones_add">
+                                                <label for="habitaciones_add">Habitaciones</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" step="0.01" name="Precio_add" class="form-control rounded-4" id="Precio_add">
+                                                <label for="Precio_add">Precio</label>
                                             </div>
                                         </div>
                                     </div>
@@ -654,7 +480,7 @@
                                         <div class="col-4 text-center">
                                         </div>
                                         <div class="col-4 text-center">
-                                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" data-bs-dismiss="modal" type="submit">Update</button>
+                                            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" data-bs-dismiss="modal" type="submit">Añadir</button>
                                         </div>
                                     </div>
                                 </form>
@@ -671,66 +497,66 @@
                 <h1><span id="cabecera_Admin" class="badge bg-info text-dark">Panel de Control</span></h1>
             </div>
             <div class="position-static mt-3 mb-3 text-center">
-                <h1><span id="cabecera_Admin_vuelos" class="badge bg-info text-dark">Vuelos</span></h1>
+                <h1><span id="cabecera_Admin_hoteles" class="badge bg-info text-dark">Hoteles</span></h1>
             </div>
             <div class="row">
                 <div id="containe_table_Admin" class="col-12">
-                    <table id="tabla_vuelos_Admin" class="" width="100%"></table>
+                    <table id="tabla_Hoteles_Admin" class="" width="100%"></table>
                 </div>
             </div>
             <div class="position-static mt-3 mb-3 text-center">
                 <h1><span id="cabecera_Admin_Reservas" class="badge bg-info text-dark">Reservas</span></h1>
             </div>
             <div class="row">
-                <div id="containe_table_Admin_2" class="col-12">
+                <div id="containe_table_Admin_2 text-center" class="col-12">
                     <table id="tabla_Reservas_Admin" class="" width="100%"></table>
                 </div>
             </div>
             <div class="text-center mt-3 mb-3 text-center">
-                <h1><span id="cabecera_previa" class="badge bg-info text-dark">Vista Previa</span></h1>
+                <h1><span id="cabecera_previa_admin" class="badge bg-info text-dark">Vista Previa</span></h1>
             </div>
         </div>
-        <!-- Apartado Aerolinea    -->
-        <div id="aerolinea_display">
+        <!-- Apartado Hotel    -->
+        <div id="hotel_display">
             <div class="position-static mt-3 mb-3 text-center">
-                <h1><span id="cabecera_Aerolinea" class="badge bg-info text-dark">Panel de Control</span></h1>
+                <h1><span id="cabecera_hotel" class="badge bg-info text-dark">Panel de Control</span></h1>
                 <div>
-                    <button class="w-30 mb-2 btn btn-lg rounded btn-success" data-bs-toggle="modal" data-bs-target="#modal_add_Vuelo" type="button"> + </button>
+                    <button class="w-30 mb-2 btn btn-lg rounded btn-success" data-bs-toggle="modal" data-bs-target="#modal_add_hotel" type="button"> + </button>
                 </div>
             </div>
             <div class="position-static mt-3 mb-3 text-center">
-                <h1><span id="cabecera_Aerolinea_vuelos" class="badge bg-info text-dark">Vuelos de la Aerolinea</span></h1>
+                <h1><span id="cabecera_hotel_hotelera" class="badge bg-info text-dark">Hoteles de la Compañia</span></h1>
             </div>
             <div class="row">
-                <div id="containe_table_aerolinea" class="col-12">
-                    <table id="tabla_vuelos_aerolinea" class="" width="100%"></table>
+                <div id="containe_table_hotel" class="col-12">
+                    <table id="tabla_hoteles_hotelera" class="" width="100%"></table>
                 </div>
             </div>
             <div class="position-static mt-3 mb-3 text-center">
-                <h1><span id="cabecera_Aerolinea_reservas" class="badge bg-info text-dark">Sus Reservas</span></h1>
+                <h1><span id="cabecera_hotel_reservas" class="badge bg-info text-dark">Sus Reservas</span></h1>
             </div>
             <div class="row">
-                <div id="containe_table_aerolinea_reservas" class="col-12">
-                    <table id="table_aerolinea_reservas" class="" width="100%"></table>
+                <div id="containe_table_hotel_reservas" class="col-12">
+                    <table id="table_hotel_reservas" class="" width="100%"></table>
                 </div>
             </div>
             <div class="text-center mt-3 mb-3 text-center">
                 <h1><span class="badge bg-info text-dark">Vista Previa</span></h1>
             </div>
         </div>
-        <!-- Vuelos Cabecera -->
+        <!-- Hoteles Cabecera -->
         <div class="row mt-2">
             <div class="col-12">
-                <img src="../resources/img/Vuelos.jpg" width="100%">
+                <img src="../resources/img/hotel.jpg" width="100%">
             </div>
         </div>
         <div class="position-static mt-3 mb-3 text-center">
-            <h1><span id="cabecera_Comentario" class="badge bg-info text-dark">Vuelos</span></h1>
+            <h1><span id="cabecera_hoteles" class="badge bg-info text-dark">Hoteles</span></h1>
         </div>
-        <!-- Vuelos Tabla -->
+        <!-- Hoteles Tabla -->
         <div class="row">
-            <div id="containe_table_vuelos" class="col-12">
-                <table id="tabla_vuelos" class="table table-bordered" width="100%"></table>
+            <div id="containe_table_hoteles" class="col-12">
+                <table id="tabla_hoteles" class="table table-bordered" width="100%"></table>
             </div>
         </div>
         <!-- Apartado Usuario -->
@@ -751,7 +577,7 @@
 
     </div>
     <!-- Import JS -->
-    <script src="../js/vuelos.js"></script>
+    <script src="../js/hotel.js"></script>
 
 </body>
 
